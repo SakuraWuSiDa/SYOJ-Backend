@@ -4,14 +4,12 @@ package model
 * 与 User 结构体相关的请求
  */
 
-// create user request
 type CreateUserRequest struct {
 	Username  string `json:"username" binding:"required"`
 	Email     string `json:"email" binding:"required"`
 	Password  string `json:"password" binding:"required,min=6"`
 }
 
-// create user response
 type CreateUserResponse struct {
 	Username  string `json:"username"`
 	UserID    int64  `json:"user_id"`
@@ -28,22 +26,14 @@ type LoginParams struct {
 	Password  string `json:"password"`
 }
 
-// login request
 type LoginRequest struct {
 	Username  string `json:"username" binding:"required"`
 	Password  string `json:"password" binding:"required"`
 }
 
-// login response
 type LoginResponse struct {
 	AccessToekn string             `json:"access_token"`
 	User        CreateUserResponse `json:"user"`
-}
-
-// GetUserListParams
-type GetUserListParams struct {
-	PageNum  int `form:"pageNum" binding:"required,min=1"`
-	PageSize int `form:"pageSize" binding:"required,min=5,max=10"`
 }
 
 type UpdateUserParams struct {
@@ -52,14 +42,6 @@ type UpdateUserParams struct {
 	Gender          int8   `json:"gender" binding:"required"`
 	StudentID       string `json:"student_id" binding:"required"`
 	Class           string `json:"class" binding:"required"`
-}
-
-type UserParams struct {
-	UserID int64 `form:"userID"`
-}
-
-type DeleteUserParams struct {
-	UserID int64 `form:"userID"`
 }
 
 type UserDetailResponse struct {
@@ -77,20 +59,21 @@ type UserDetailResponse struct {
 * 与 Problem 相关的请求参数
  */
 
-type Cases struct {
-	Input  string `json:"input"`
-	Output string `json:"output"`
-}
-
 type CreateProblemRequest struct {
-	TimeLimit       int      `json:"timeLimit" binding:"required,min=1"`
-	MemoryLimit     int      `json:"memoryLimit" binding:"required,min=1"`
-	Name            string   `json:"problemName" binding:"required"`
-	Description     string   `json:"description" binding:"required"`
-	TestCase        string   `json:"testCase" binding:"required"`
-	Author          string   `json:"author"`
-	DifficultyLevel string   `json:"difficultyLevel" binding:"required"`
-	Cases           []*Cases `json:"cases"`
+	Title         string                 `json:"title" binding:"required"`
+	TimeLimit     uint                   `json:"time_limit" binding:"required"`
+	MemoryLimit   uint                   `json:"memory_limit" binding:"required"`
+	Author        string                 `json:"author" binding:"required"`
+	Source        string                 `json:"source"`
+	Background    string                 `json:"background"`
+	Statement     string                 `json:"statement"`
+	Input         string                 `json:"input"`
+	Output        string                 `json:"output"`
+	ExamplesIn    string                 `json:"examples_in"`
+	ExamplesOut   string                 `json:"examples_out"`
+	Hint          string                 `json:"hint"`
+	IsOpen        bool                   `json:"is_open"`
+	Tags          string                 `json:"tags"`
 }
 
 type ListProblemRequest struct {

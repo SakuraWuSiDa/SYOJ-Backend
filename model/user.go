@@ -14,4 +14,5 @@ type User struct {
 	IsAdmin        int8        `json:"is_admin" gorm:"type:tinyint;column:is_admin;default:0;NOT NULL"`
 	IsSuperAdmin   int8        `json:"is_super_admin" gorm:"type:tinyint;column:is_super_admin;default:0;NOT NULL"`
 	CreatedAt      time.Time   `json:"created_at"  gorm:"column:created_at;NOT NULL"`
+	Privilege      uint64      `json:"privilege" gorm:"column:privilege;NOT NULL;default:0"`
 }

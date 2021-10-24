@@ -33,6 +33,7 @@ func CreateUser(arg *model.CreateUserParams) (user *model.User, err error) {
 		HashedPassword: arg.HashedPassword,
 		IsAdmin:        0,
 		IsSuperAdmin:   0,
+		Privilege:      0,
 	}
 	user, err = dao.CreateUser(u)
 	if err != nil {
